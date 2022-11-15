@@ -114,6 +114,13 @@ plt.subplots_adjust(bottom=0.3)
 plt.show()
 plt.savefig('assets/confusion_matrix.png')
 
+# Show the model accuracy
+print('----------------------------------------')
+score = model.evaluate(x_test, y_test, verbose=0)
+print('Test loss:', score[0])
+print('Test accuracy:', score[1])
+print('----------------------------------------')
+
 # Ask if user wants to save the model
 save = input("Save model? (y/n): ")
 if save == 'y':
