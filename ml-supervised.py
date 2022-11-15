@@ -13,6 +13,14 @@ from sklearn.metrics import confusion_matrix
 stars = pd.read_csv('assets/stars.csv', na_values=['?']).dropna()
 stars_classes = ['Brown Dwarf', 'Red Dwarf', 'White Dwarf', 'Main Sequence', 'Super Giants', 'Hyper Giants']
 
+# Scale the data
+# Scale the columns "Temperature (K)", "Luminosity(L/Lo)", "Radius(R/Ro)", "Absolute magnitude(Mv)"
+stars['Temperature (K)'] = stars['Temperature (K)'].apply(lambda x: (x - stars['Temperature (K)'].min()) / (stars['Temperature (K)'].max() - stars['Temperature (K)'].min()))
+stars['Luminosity(L/Lo)'] = stars['Luminosity(L/Lo)'].apply(lambda x: (x - stars['Luminosity(L/Lo)'].min()) / (stars['Luminosity(L/Lo)'].max() - stars['Luminosity(L/Lo)'].min()))
+stars['Radius(R/Ro)'] = stars['Radius(R/Ro)'].apply(lambda x: (x - stars['Radius(R/Ro)'].min()) / (stars['Radius(R/Ro)'].max() - stars['Radius(R/Ro)'].min()))
+stars['Absolute magnitude(Mv)'] = stars['Absolute magnitude(Mv)'].apply(lambda x: (x - stars['Absolute magnitude(Mv)'].min()) / (stars['Absolute magnitude(Mv)'].max() - stars['Absolute magnitude(Mv)'].min()))
+
+
 features = ['Temperature (K)', 'Luminosity(L/Lo)', 'Radius(R/Ro)', 'Absolute magnitude(Mv)', 'Star type', 'Star color',
             'Spectral Class']
 label = 'Star type'
