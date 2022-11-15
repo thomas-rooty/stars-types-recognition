@@ -88,7 +88,11 @@ plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.legend(['training', 'validation'], loc='upper right')
 plt.show()
-plt.savefig('assets/loss.png')
+
+# Ask user if they want to save the plot
+save_plot = input("Do you want to save the plot? (y/n): ")
+if save_plot == 'y':
+    plt.savefig('assets/loss.png')
 
 # View the learned weights and biases
 for layer in model.layers:
@@ -112,7 +116,11 @@ plt.xlabel("Predicted Types")
 plt.ylabel("Actual Types")
 plt.subplots_adjust(bottom=0.3)
 plt.show()
-plt.savefig('assets/confusion_matrix.png')
+
+# Ask user if they want to save the plot
+save_plot = input("Do you want to save the plot? (y/n): ")
+if save_plot == 'y':
+    plt.savefig('assets/confusion_matrix.png')
 
 # Show the model accuracy
 print('----------------------------------------')
