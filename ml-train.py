@@ -67,7 +67,7 @@ print(model.summary())
 # Train the model
 # hyper-parameters for optimizer
 learning_rate = 0.001
-opt = optimizers.Adam(lr=learning_rate)
+opt = optimizers.Adam(learning_rate=learning_rate)
 
 model.compile(loss='categorical_crossentropy',
               optimizer=opt,
@@ -88,6 +88,7 @@ plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.legend(['training', 'validation'], loc='upper right')
 plt.show()
+plt.savefig('assets/loss.png')
 
 # View the learned weights and biases
 for layer in model.layers:
@@ -109,8 +110,9 @@ plt.xticks(tick_marks, stars_classes, rotation=85)
 plt.yticks(tick_marks, stars_classes)
 plt.xlabel("Predicted Types")
 plt.ylabel("Actual Types")
-plt.subplots_adjust(bottom=0.25)
+plt.subplots_adjust(bottom=0.3)
 plt.show()
+plt.savefig('assets/confusion_matrix.png')
 
 # Ask if user wants to save the model
 save = input("Save model? (y/n): ")
