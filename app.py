@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import pandas as pd
 from keras.saving.save import load_model
 import numpy as np
 
@@ -13,21 +12,21 @@ def base():
 
 @app.route('/post', methods=["POST"])
 def predict_startype():
-    # load the stars dataset (excluding rows with null values)
-    stars = pd.read_csv('assets/stars.csv', na_values=['?']).dropna()
+    # Define the classes
     stars_classes = ['Brown Dwarf', 'Red Dwarf', 'White Dwarf', 'Main Sequence', 'Super Giants', 'Hyper Giants']
 
     # Load the saved model
     model = load_model('assets/stars-classifier.h5')
 
-    # CReate a new array of features
+    # Get POST data
     input_json = request.get_json(force=True)
     res = {'star_values': input_json['star_values']}
 
+    # Create a new array of features
     x_new = np.array([res['star_values']])
     print('New sample: {}'.format(x_new))
 
-    # Use the model to predict the class
+    # Use the model to predict the class (type)
     class_probabilities = model.predict(x_new)
     predictions = np.argmax(class_probabilities, axis=1)
 
