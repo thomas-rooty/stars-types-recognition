@@ -108,6 +108,7 @@ plt.xticks(tick_marks, stars_classes, rotation=85)
 plt.yticks(tick_marks, stars_classes)
 plt.xlabel("Predicted Types")
 plt.ylabel("Actual Types")
+plt.subplots_adjust(bottom=0.25)
 plt.show()
 
 # Saved the trained model
