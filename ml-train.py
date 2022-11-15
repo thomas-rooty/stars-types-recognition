@@ -15,11 +15,15 @@ stars_classes = ['Brown Dwarf', 'Red Dwarf', 'White Dwarf', 'Main Sequence', 'Su
 
 # Scale the data
 # Scale the columns "Temperature (K)", "Luminosity(L/Lo)", "Radius(R/Ro)", "Absolute magnitude(Mv)"
-stars['Temperature (K)'] = stars['Temperature (K)'].apply(lambda x: (x - stars['Temperature (K)'].min()) / (stars['Temperature (K)'].max() - stars['Temperature (K)'].min()))
-stars['Luminosity(L/Lo)'] = stars['Luminosity(L/Lo)'].apply(lambda x: (x - stars['Luminosity(L/Lo)'].min()) / (stars['Luminosity(L/Lo)'].max() - stars['Luminosity(L/Lo)'].min()))
-stars['Radius(R/Ro)'] = stars['Radius(R/Ro)'].apply(lambda x: (x - stars['Radius(R/Ro)'].min()) / (stars['Radius(R/Ro)'].max() - stars['Radius(R/Ro)'].min()))
-stars['Absolute magnitude(Mv)'] = stars['Absolute magnitude(Mv)'].apply(lambda x: (x - stars['Absolute magnitude(Mv)'].min()) / (stars['Absolute magnitude(Mv)'].max() - stars['Absolute magnitude(Mv)'].min()))
-
+stars['Temperature (K)'] = stars['Temperature (K)'].apply(
+    lambda x: (x - stars['Temperature (K)'].min()) / (stars['Temperature (K)'].max() - stars['Temperature (K)'].min()))
+stars['Luminosity(L/Lo)'] = stars['Luminosity(L/Lo)'].apply(lambda x: (x - stars['Luminosity(L/Lo)'].min()) / (
+            stars['Luminosity(L/Lo)'].max() - stars['Luminosity(L/Lo)'].min()))
+stars['Radius(R/Ro)'] = stars['Radius(R/Ro)'].apply(
+    lambda x: (x - stars['Radius(R/Ro)'].min()) / (stars['Radius(R/Ro)'].max() - stars['Radius(R/Ro)'].min()))
+stars['Absolute magnitude(Mv)'] = stars['Absolute magnitude(Mv)'].apply(
+    lambda x: (x - stars['Absolute magnitude(Mv)'].min()) / (
+                stars['Absolute magnitude(Mv)'].max() - stars['Absolute magnitude(Mv)'].min()))
 
 features = ['Temperature (K)', 'Luminosity(L/Lo)', 'Radius(R/Ro)', 'Absolute magnitude(Mv)', 'Star type', 'Star color',
             'Spectral Class']
@@ -70,7 +74,7 @@ model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 # Train the model over 50 epochs using 10-observation batches and using the test holdout dataset for validation
-num_epochs = 1000
+num_epochs = 100
 history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=10, validation_data=(x_test, y_test))
 
 # Plot the training and validation loss
@@ -102,6 +106,12 @@ plt.colorbar()
 tick_marks = np.arange(len(stars_classes))
 plt.xticks(tick_marks, stars_classes, rotation=85)
 plt.yticks(tick_marks, stars_classes)
-plt.xlabel("Predicted Species")
-plt.ylabel("Actual Species")
+plt.xlabel("Predicted Types")
+plt.ylabel("Actual Types")
 plt.show()
+
+# Saved the trained model
+modelFileName = 'assets/stars-classifier.h5'
+model.save(modelFileName)
+del model
+print("Saved model to disk as", modelFileName)
