@@ -82,6 +82,7 @@ history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=10, validati
 epoch_nums = range(1, num_epochs + 1)
 training_loss = history.history["loss"]
 validation_loss = history.history["val_loss"]
+fig1 = plt.gcf()
 plt.plot(epoch_nums, training_loss)
 plt.plot(epoch_nums, validation_loss)
 plt.xlabel('epoch')
@@ -92,7 +93,7 @@ plt.show()
 # Ask user if they want to save the plot
 save_plot = input("Do you want to save the plot? (y/n): ")
 if save_plot == 'y':
-    plt.savefig('assets/loss.png')
+    fig1.savefig('assets/loss.png')
 
 # View the learned weights and biases
 for layer in model.layers:
@@ -107,6 +108,7 @@ true_labels = np.argmax(y_test, axis=1)
 
 # Plot the confusion matrix
 cm = confusion_matrix(true_labels, predictions)
+fig2 = plt.gcf()
 plt.imshow(cm, interpolation="nearest", cmap=plt.cm.Blues)
 plt.colorbar()
 tick_marks = np.arange(len(stars_classes))
@@ -120,7 +122,7 @@ plt.show()
 # Ask user if they want to save the plot
 save_plot = input("Do you want to save the plot? (y/n): ")
 if save_plot == 'y':
-    plt.savefig('assets/confusion_matrix.png')
+    fig2.savefig('assets/confusion_matrix.png')
 
 # Show the model accuracy
 print('----------------------------------------')
