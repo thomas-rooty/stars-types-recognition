@@ -74,7 +74,8 @@ model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 # Train the model over 50 epochs using 10-observation batches and using the test holdout dataset for validation
-num_epochs = 100
+# Ask user the number of epochs
+num_epochs = int(input("Enter the number of epochs: "))
 history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=10, validation_data=(x_test, y_test))
 
 # Plot the training and validation loss
@@ -111,8 +112,13 @@ plt.ylabel("Actual Types")
 plt.subplots_adjust(bottom=0.25)
 plt.show()
 
-# Saved the trained model
-modelFileName = 'assets/stars-classifier.h5'
-model.save(modelFileName)
-del model
-print("Saved model to disk as", modelFileName)
+# Ask if user wants to save the model
+save = input("Save model? (y/n): ")
+if save == 'y':
+    # Saved the trained model
+    modelFileName = 'assets/stars-classifier.h5'
+    model.save(modelFileName)
+    del model
+    print("Saved model to disk as", modelFileName)
+else:
+    print("Model not saved.")
