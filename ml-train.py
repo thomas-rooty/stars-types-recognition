@@ -1,7 +1,7 @@
 import pandas as pd
 import tensorflow
 from sklearn.model_selection import train_test_split
-from keras import utils
+from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import Dense
 from keras import optimizers
@@ -50,8 +50,8 @@ tensorflow.random.set_seed(0)
 x_train = x_train.astype('float32')
 x_test = x_test.astype('float32')
 
-y_train = utils.to_categorical(y_train, 6)
-y_test = utils.to_categorical(y_test, 6)
+y_train = keras.utils.to_categorical(y_train, 6)
+y_test = keras.utils.to_categorical(y_test, 6)
 print("Ready to build model.")
 
 # Define a neural network
