@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from tensorflow.keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import Dense
-from keras import optimizers
+from tensorflow.keras import optimizers
 from matplotlib import pyplot as plt
 import numpy as np
 from sklearn.metrics import confusion_matrix
@@ -67,7 +67,7 @@ print(model.summary())
 # Train the model
 # hyper-parameters for optimizer
 learning_rate = 0.001
-opt = optimizers.Adam(learning_rate=learning_rate)
+opt = optimizers.tensorflow.Adam(learning_rate=learning_rate)
 
 model.compile(loss='categorical_crossentropy',
               optimizer=opt,
