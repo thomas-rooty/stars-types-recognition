@@ -13,18 +13,12 @@ stars_classes = ['Brown Dwarf', 'Red Dwarf', 'White Dwarf', 'Main Sequence', 'Su
 
 # Scale the data
 # Scale the columns "Temperature (K)", "Luminosity(L/Lo)", "Radius(R/Ro)", "Absolute magnitude(Mv)"
-stars['Temperature (K)'] = stars['Temperature (K)'].apply(
-    lambda x: (x - stars['Temperature (K)'].min()) / (stars['Temperature (K)'].max() - stars['Temperature (K)'].min()))
-stars['Luminosity(L/Lo)'] = stars['Luminosity(L/Lo)'].apply(lambda x: (x - stars['Luminosity(L/Lo)'].min()) / (
-            stars['Luminosity(L/Lo)'].max() - stars['Luminosity(L/Lo)'].min()))
-stars['Radius(R/Ro)'] = stars['Radius(R/Ro)'].apply(
-    lambda x: (x - stars['Radius(R/Ro)'].min()) / (stars['Radius(R/Ro)'].max() - stars['Radius(R/Ro)'].min()))
-stars['Absolute magnitude(Mv)'] = stars['Absolute magnitude(Mv)'].apply(
-    lambda x: (x - stars['Absolute magnitude(Mv)'].min()) / (
-                stars['Absolute magnitude(Mv)'].max() - stars['Absolute magnitude(Mv)'].min()))
+stars['Temperature (K)'] = stars['Temperature (K)'].apply(lambda x: (x - stars['Temperature (K)'].min()) / (stars['Temperature (K)'].max() - stars['Temperature (K)'].min()))
+stars['Luminosity(L/Lo)'] = stars['Luminosity(L/Lo)'].apply(lambda x: (x - stars['Luminosity(L/Lo)'].min()) / (stars['Luminosity(L/Lo)'].max() - stars['Luminosity(L/Lo)'].min()))
+stars['Radius(R/Ro)'] = stars['Radius(R/Ro)'].apply(lambda x: (x - stars['Radius(R/Ro)'].min()) / (stars['Radius(R/Ro)'].max() - stars['Radius(R/Ro)'].min()))
+stars['Absolute magnitude(Mv)'] = stars['Absolute magnitude(Mv)'].apply(lambda x: (x - stars['Absolute magnitude(Mv)'].min()) / (stars['Absolute magnitude(Mv)'].max() - stars['Absolute magnitude(Mv)'].min()))
 
-features = ['Temperature (K)', 'Luminosity(L/Lo)', 'Radius(R/Ro)', 'Absolute magnitude(Mv)', 'Star type', 'Star color',
-            'Spectral Class']
+features = ['Temperature (K)', 'Luminosity(L/Lo)', 'Radius(R/Ro)', 'Absolute magnitude(Mv)', 'Star color', 'Spectral Class']
 label = 'Star type'
 
 # Split data 70%-30% into training and test sets
@@ -32,13 +26,6 @@ x_train, x_test, y_train, y_test = train_test_split(stars[features].values,
                                                     stars[label].values,
                                                     test_size=0.30,
                                                     random_state=0)
-
-# print('Training Set: %d, Test Set: %d \n' % (len(x_train), len(x_test)))
-# print("Sample of features and labels:")
-
-# Take a look at the first 25 training features and corresponding labels
-# for n in range(0, 24):
-#     print(x_train[n], y_train[n], '(' + stars_classes[y_train[n]] + ')')
 
 # Set random seed for reproducability
 tensorflow.random.set_seed(0)
