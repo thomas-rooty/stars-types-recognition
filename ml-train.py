@@ -43,6 +43,10 @@ x_train, x_test, y_train, y_test = train_test_split(stars[features].values,
 # Set random seed for reproducability
 tensorflow.random.set_seed(0)
 
+# Use all the threads
+tensorflow.config.threading.set_intra_op_parallelism_threads(1)
+tensorflow.config.threading.set_inter_op_parallelism_threads(40)
+
 # Set data types for categorical labels
 # Set data types for float features
 x_train = x_train.astype('float32')
