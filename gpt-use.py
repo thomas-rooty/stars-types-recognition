@@ -7,10 +7,10 @@ stars = pd.read_csv('assets/stars.csv', na_values=['?']).dropna()
 stars_classes = ['Brown Dwarf', 'Red Dwarf', 'White Dwarf', 'Main Sequence', 'Super Giants', 'Hyper Giants']
 
 # Load the saved model
-model = load_model('assets/stars-classifier.h5')
+model = load_model('assets/gpt-model.h5')
 
-# CReate a new array of features
-x_new = np.array([[7740, 0.00049, 0.01234, 14.02, 2, 0, 0]])
+# Create a new array of features (Temperature, Luminosity, Radius, Absolute Magnitude)
+x_new = np.array([[12098, 689, 7.01, 0.02]])
 print('New sample: {}'.format(x_new))
 
 # Use the model to predict the class

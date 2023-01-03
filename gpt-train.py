@@ -1,5 +1,6 @@
 import numpy as np
 import tensorflow as tf
+import tensorflowjs as tfjs
 import pandas as pd
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
@@ -55,6 +56,8 @@ if save_plot == 'y':
 save = input('Save the model? (y/n): ')
 if save == 'y':
   model.save('assets/gpt-model.h5')
+  # Save it as a TensorFlow.js model
+  tfjs.converters.save_keras_model(model, 'assets/gpt-model')
 else:
   print('Model not saved')
 
