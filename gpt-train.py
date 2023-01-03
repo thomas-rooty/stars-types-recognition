@@ -30,7 +30,7 @@ model = tf.keras.Model(inputs=ph_input, outputs=ph_output)
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 # Train the model
-model.fit(X_train, y_train, epochs=1000)
+model.fit(X_train, y_train, epochs=5000)
 
 # Evaluate the model
 model.evaluate(X_test, y_test)
